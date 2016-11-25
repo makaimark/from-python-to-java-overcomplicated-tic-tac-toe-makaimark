@@ -14,16 +14,14 @@ flyway.password=YOUR_DATABASE_PASSWORD
 
 ## Run
 
-The Repository contains Run configurations for IntelliJ IDEA. 
-If you start the Server configuration, it shall also run the pre-written FunFactGeneratorService configuration.
+Start the services first, one-by-one, then start the Server.
+The Repository contains Run configurations (for IntelliJ IDEA) for the FunFactorGeneratorService and the Server.
 
-Don't forget to extend this configuration (in .idea/runConfigurations.xml; or by updating it in IntelliJ) for all later services.
-
-## What to build?
+## What to build/develop/do?
 
 ### The vision
 
-The architect guy created the following Component UML:
+The *architect guy* created the following Component UML:
 
 ![UML](component-diagram.png)
 

@@ -17,9 +17,6 @@
     <option name="PASS_PARENT_ENVS" value="true" />
     <module name="overcomplicated_tic_tac_toe" />
     <envs />
-    <method>
-      <option name="RunConfigurationTask" enabled="true" run_configuration_name="FunFactGeneratorService" run_configuration_type="Application" />
-      <option name="Make" enabled="true" />
-    </method>
+    <method />
   </configuration>
 </component>
