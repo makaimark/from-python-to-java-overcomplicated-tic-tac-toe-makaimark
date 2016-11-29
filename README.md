@@ -83,7 +83,11 @@ Read the documentations, and use the best solution that you like.
 
 1. First of all, feel free to refactor the prototype! *But use proper git branching!*
 1. Connect the **com.codecool.FunFactGeneratorService** to the Server
-    - The FunFactGeneratorService is pre-implemented, but you should extend it with the getRandomByCategory option. 
+    - The FunFactGeneratorService is pre-implemented
+    - Finish the getRandomByCategory option.
+        - Store a "FunFactCategoryValue" in a configuration part of your application. (Top level variable or environment variable, whatever... Just store it in a string, where it is easy to find and change)
+        - Modify the FanFactServiceController::category() method to return an ArrayList<String> type. So the Service should just forward the JSON array to the Main's Controller, then all the other Java logic (in the main application) can expect an ArrayList of Strings.
+        - This method should be used to validate the configured category, and it should throw an Error, if it's invalid.
     - Write unit tests for the FunFactGeneratorService.
         - Mock the Network communication.
         - Test the Service for valid, invalid and missing responses.
@@ -96,8 +100,12 @@ Read the documentations, and use the best solution that you like.
     - Connect it with the GameController, and show the greeting in the welcome page.
 1. Comic strip
     - Implement the **com.codecool.ComicGeneratorService *IN* Python**.
-        - This service needs to be implemented in Python.
-        - It work the same way as other Services: It should include a simple webserver.
+        - This service needs to be implemented in Python!
+        - Create a directory called *python* into *src/main*
+        - Create a directory called *comic_generator_service* into *src/main/python* and use this folder for this service.
+        - \[Setup the Python interpreter in your IDE\]
+        - **Use virtualenv**, and before you commit, always freeze pip!
+        - It shall work the same way as other Services: It should include a simple webserver:
         - When it is called, it should respond with the URL of the comic strip image.
     - Connect it with the GameController, and show the image in the game page.
 1. Funny avatar
