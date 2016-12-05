@@ -30,8 +30,7 @@ public class FunFactServiceController {
 
     public String getRandom() throws URISyntaxException, IOException {
         logger.info("Getting Random Fun Fact");
-
-        return execute("/random");
+        return execute("/api/random");
     }
 
     public String getCategories() throws URISyntaxException, IOException {
