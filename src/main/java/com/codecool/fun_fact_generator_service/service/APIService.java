@@ -1,8 +1,10 @@
 package com.codecool.fun_fact_generator_service.service;
 
 import com.codecool.fun_fact_generator_service.controller.FunFactAPIController;
+import jdk.nashorn.internal.parser.JSONParser;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.utils.StringUtils;
@@ -10,6 +12,8 @@ import spark.utils.StringUtils;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+
+import static org.postgresql.core.Oid.JSON;
 
 public class APIService {
 
@@ -44,6 +48,12 @@ public class APIService {
         logger.info("Getting a random fact");
 
         return execute(builder.build());
+    }
+
+    public String getRandomByCategory(String category) throws URISyntaxException, IOException {
+        String response = execute(new URIBuilder(API_URL + "/random?category=" + category).build());
+        JSONObject json = new JSONObject(response);
+        return json.getString("value");
     }
 
     /**

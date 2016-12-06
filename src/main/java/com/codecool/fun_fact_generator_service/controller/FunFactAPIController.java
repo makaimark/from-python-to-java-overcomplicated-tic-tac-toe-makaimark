@@ -31,6 +31,10 @@ public class FunFactAPIController {
         return apiService.random(category);
     }
 
+    public String getRandomByCategory(Request request, Response response) throws IOException, URISyntaxException {
+        return apiService.getRandomByCategory(request.queryParams("category"));
+    }
+
     /**
      * @param request
      * @param response

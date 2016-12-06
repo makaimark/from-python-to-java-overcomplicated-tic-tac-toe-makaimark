@@ -9,10 +9,13 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class FunFactServiceController {
     private static final Logger logger = LoggerFactory.getLogger(FunFactServiceController.class);
     private static final String SERVICE_URL = "http://localhost:60000";
+    private  static  final String SELECTED_CATEGORY = "food";
 
     public Boolean isRunning() throws URISyntaxException, IOException {
         logger.info("Checking Service status");
@@ -28,32 +31,41 @@ public class FunFactServiceController {
         return running;
     }
 
-    public String getRandom() throws URISyntaxException, IOException {
+    public static String getRandom() throws URISyntaxException, IOException {
         logger.info("Getting Random Fun Fact");
-        return execute("/api/random");
+        String result = execute("/api/random");
+        String[] temp;
+        temp = result.split(",");
+        String joke = temp[4].substring(9, temp[4].length()-2);
+        return joke;
     }
 
-    public String getCategories() throws URISyntaxException, IOException {
+    public static ArrayList<String> getCategories() throws URISyntaxException, IOException {
         logger.info("Listing categories");
-
-        // TODO: This should parse the JSON and return an ArrayList<String> instead
-
-        return execute("/categories");
+        String result = execute("/api/categories");
+        result = result.substring(1, result.length()-1);
+        ArrayList<String> categories = new ArrayList<>(Arrays.asList(result.replace("\"", "").split(",")));
+        return categories;
     }
 
-    // TODO: Getting by category is not implemented yet in the service
-    public String getRandomByCategory(String category) throws URISyntaxException, IOException {
-        throw new NotImplementedException();
+//    // TODO: Getting by category is not implemented yet in the service
+    public static String getRandomByCategory() throws URISyntaxException, IOException {
+        ArrayList categories = getCategories();
+        if ( !categories.contains(SELECTED_CATEGORY)) {
+            throw new IllegalArgumentException();
+        }
+        String result = execute("/api/getbycategory?category="+SELECTED_CATEGORY);
+        return result;
     }
 
     /**
      * Executes the actual GET request against the given URI
      *
-     * @param uri - obj containing path and params.
+     * @param url - obj containing path and params.
      * @return
      * @throws IOException
      */
-    private String execute(String url) throws IOException, URISyntaxException {
+    private static String execute(String url) throws IOException, URISyntaxException {
         URI uri = new URIBuilder(SERVICE_URL + url).build();
         return Request.Get(uri).execute().returnContent().asString();
     }

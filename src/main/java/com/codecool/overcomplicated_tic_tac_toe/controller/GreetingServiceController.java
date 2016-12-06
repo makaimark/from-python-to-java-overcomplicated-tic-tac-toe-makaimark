@@ -14,16 +14,18 @@ import java.util.logging.Logger;
  */
 public class GreetingServiceController {
 
-    private static final Logger logger = (Logger) LoggerFactory.getLogger(GreetingServiceController.class);
+//    private static final Logger logger = (Logger) LoggerFactory.getLogger(GreetingServiceController.class);
     private static final String SERVICE_URL = "http://localhost:60001";
 
-    public String getMessage() throws IOException, URISyntaxException {
+    public static String getMessage() throws IOException, URISyntaxException {
         System.out.println("In getMessage");
         return execute("/greeting");
     }
 
-    private String execute(String url) throws IOException, URISyntaxException {
+    private static String execute(String url) throws IOException, URISyntaxException {
         URI uri = new URIBuilder(SERVICE_URL + url).build();
+        System.out.println("Uri");
+        System.out.println(uri);
         return Request.Get(uri).execute().returnContent().asString();
     }
 }

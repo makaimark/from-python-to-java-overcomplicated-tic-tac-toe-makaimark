@@ -17,7 +17,7 @@ public class FunFactGeneratorService {
     public static void main(String[] args) {
         logger.debug("Starting " + FunFactGeneratorService.class.getName() + "...");
 
-        setup(args);
+        port(60000);
 
         FunFactGeneratorService application = new FunFactGeneratorService();
 
@@ -27,6 +27,7 @@ public class FunFactGeneratorService {
         get("/status", application.controller::status);
         get("/api/random", application.controller::random);
         get("/api/categories", application.controller::categories);
+        get("/api/getbycategory", application.controller::getRandomByCategory);
 
         // --- EXCEPTION HANDLING ---
         exception(URISyntaxException.class, (exception, request, response) -> {
