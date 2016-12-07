@@ -23,11 +23,14 @@ public class GameController {
 
     public static ModelAndView renderGame(Request req, Response res) throws IOException, URISyntaxException {
         Map params = new HashMap<>();
-        String joke = FunFactServiceController.getRandom();
+        //String joke = FunFactServiceController.getRandom();
         String bycategory = FunFactServiceController.getRandomByCategory();
+        String comicurl = ComicGeneratorServiceController.getComic();
+        System.out.println(comicurl);
+        params.put("comic_url", comicurl);
         params.put("joke", bycategory);
         params.put("avatar_url", AVATAR_URL);
-        params.put("comic_url", "https://placeholdit.imgix.net/~text?txtsize=33&txt=place%20of%20a%20comic&w=700&h=200");
+        //params.put("comic_url", "https://placeholdit.imgix.net/~text?txtsize=33&txt=place%20of%20a%20comic&w=700&h=200");
         return new ModelAndView(params, "game");
     }
 }
