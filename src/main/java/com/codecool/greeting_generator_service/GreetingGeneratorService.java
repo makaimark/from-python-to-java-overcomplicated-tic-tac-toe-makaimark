@@ -18,7 +18,7 @@ public class GreetingGeneratorService {
 
     public static void main(String[] args) {
 
-        setup(args);
+        port(60001);
 
         GreetingGeneratorService service = new GreetingGeneratorService();
 

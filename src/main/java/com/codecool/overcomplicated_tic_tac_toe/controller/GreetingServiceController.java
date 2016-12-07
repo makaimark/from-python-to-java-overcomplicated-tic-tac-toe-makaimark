@@ -18,14 +18,11 @@ public class GreetingServiceController {
     private static final String SERVICE_URL = "http://localhost:60001";
 
     public static String getMessage() throws IOException, URISyntaxException {
-        System.out.println("In getMessage");
         return execute("/greeting");
     }
 
     private static String execute(String url) throws IOException, URISyntaxException {
         URI uri = new URIBuilder(SERVICE_URL + url).build();
-        System.out.println("Uri");
-        System.out.println(uri);
         return Request.Get(uri).execute().returnContent().asString();
     }
 }
