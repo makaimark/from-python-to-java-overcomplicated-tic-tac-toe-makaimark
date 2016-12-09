@@ -10,6 +10,8 @@ public class Game {
 
     // TODO: store the Game state in this class
 
+    private String gameState;
+
     public static Game getInstance() {
         if (INSTANCE == null) {
             INSTANCE = new Game();
@@ -18,5 +20,13 @@ public class Game {
             logger.debug("Existing Game instance used.");
         }
         return INSTANCE;
+    }
+
+    public void setGameState(String state) {
+        gameState = state;
+    }
+
+    public String getGameState() {
+        return gameState;
     }
 }
