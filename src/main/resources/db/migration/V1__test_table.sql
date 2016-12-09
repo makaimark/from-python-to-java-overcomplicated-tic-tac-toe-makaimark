@@ -4,4 +4,4 @@ CREATE TABLE db_test (
 
 INSERT INTO db_test VALUES (data='pivo_is_sör');
 
-DROP TABLE db_test;
+-- DROP TABLE db_test;

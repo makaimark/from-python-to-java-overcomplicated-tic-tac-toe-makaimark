@@ -42,22 +42,4 @@ public class FunFactGeneratorService {
             logger.error("Error while processing request", exception);
         });
     }
-
-    /**
-     * Setting up port
-     * @param args - app args
-     */
-    private static void setup(String[] args){
-        if(args == null || args.length == 0){
-            logger.error("Port must be given as the first argument.");
-            System.exit(-1);
-        }
-
-        try {
-            port(Integer.parseInt(args[0]));
-        } catch (NumberFormatException e){
-            logger.error("Invalid port given '{}', it should be number.", args[0]);
-            System.exit(-1);
-        }
-    }
 }

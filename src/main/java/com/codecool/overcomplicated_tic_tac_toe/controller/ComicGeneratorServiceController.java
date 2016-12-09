@@ -1,7 +1,10 @@
 package com.codecool.overcomplicated_tic_tac_toe.controller;
 
+import com.codecool.fun_fact_generator_service.service.APIService;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,6 +17,8 @@ import java.util.Arrays;
  */
 public class ComicGeneratorServiceController {
 
+    private static final Logger logger = LoggerFactory.getLogger(ComicGeneratorServiceController.class);
+
     private static final String SERVICE_URL = "http://localhost:60002";
 
     public static String getComic() throws IOException, URISyntaxException {
@@ -23,6 +28,7 @@ public class ComicGeneratorServiceController {
 //        result = result.substring(index+6);
 //        ArrayList<String> comic = new ArrayList<>(Arrays.asList(result.replace("\"", "").split(",")));
 //        return comic.get(0);
+        logger.info("We send a request to the service, /comic");
         return execute("/comic");
     }
 

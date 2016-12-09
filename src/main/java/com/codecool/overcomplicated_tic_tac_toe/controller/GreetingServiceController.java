@@ -2,22 +2,24 @@ package com.codecool.overcomplicated_tic_tac_toe.controller;
 
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
+import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.logging.Logger;
 
 /**
  * Created by makaimark on 2016.12.05..
  */
 public class GreetingServiceController {
 
-//    private static final Logger logger = (Logger) LoggerFactory.getLogger(GreetingServiceController.class);
+    private static final Logger logger = LoggerFactory.getLogger(GreetingServiceController.class);
+
     private static final String SERVICE_URL = "http://localhost:60001";
 
     public static String getMessage() throws IOException, URISyntaxException {
+        logger.info("Send the request to the service /greeting");
         return execute("/greeting");
     }
 

@@ -1,6 +1,8 @@
 package com.codecool.comic_generator_service.controller;
 
 import com.codecool.comic_generator_service.service.ComicGeneratorAPIService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.Request;
 import spark.Response;
 
@@ -12,7 +14,8 @@ import java.net.URISyntaxException;
  */
 public class ComicGeneratorAPIController {
 
-    public static final String PARAM_KEY = "img";
+    private static final Logger logger = LoggerFactory.getLogger(ComicGeneratorAPIController.class);
+
     private ComicGeneratorAPIService apiService;
 
     public ComicGeneratorAPIController(ComicGeneratorAPIService service) {
@@ -20,7 +23,7 @@ public class ComicGeneratorAPIController {
     }
 
     public String random(Request request, Response response) throws IOException, URISyntaxException {
-        String img = request.queryParams(PARAM_KEY);
+        logger.info("generate the random number for the comic api");
         int random = (int) (Math.random() * (1500 - 1)) + 1;
         return apiService.random(random);
     }

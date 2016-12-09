@@ -51,6 +51,7 @@ public class APIService {
     }
 
     public String getRandomByCategory(String category) throws URISyntaxException, IOException {
+        logger.info("Send request to the API, and we got the random joke");
         String response = execute(new URIBuilder(API_URL + "/random?category=" + category).build());
         JSONObject json = new JSONObject(response);
         return json.getString("value");

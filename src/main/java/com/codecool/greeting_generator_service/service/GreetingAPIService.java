@@ -27,8 +27,9 @@ public class GreetingAPIService {
     }
 
     public String buildYoda() throws URISyntaxException, IOException {
+        logger.info("send the request to the yoda api with the text");
         URIBuilder builder = new URIBuilder(API_URL);
-        builder.addParameter("sentence", "YodaText hellokaaa");
+        builder.addParameter("sentence", "YodaText. Hello my friend");
 
         return execute(builder.build());
     }
