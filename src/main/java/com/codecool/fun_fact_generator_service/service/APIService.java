@@ -45,9 +45,13 @@ public class APIService {
             builder.addParameter(FunFactAPIController.CATEGORY_PARAM_KEY, category);
         }
 
-        logger.info("Getting a random fact");
+        logger.info("Getting a random fact from api.chucknorris");
 
-        return execute(builder.build());
+        String response = execute(builder.build());
+
+        JSONObject json = new JSONObject(response);
+
+        return json.getString("value");
     }
 
     public String getRandomByCategory(String category) throws URISyntaxException, IOException {

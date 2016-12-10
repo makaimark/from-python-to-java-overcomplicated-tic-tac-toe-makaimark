@@ -33,10 +33,8 @@ public class FunFactServiceController {
 
     public static String getRandom() throws URISyntaxException, IOException {
         logger.info("Getting Random Fun Fact, send the request to the service ");
-        String result = execute("/api/random");
-        String[] temp;
-        temp = result.split(",");
-        String joke = temp[4].substring(9, temp[4].length()-2);
+        String joke = execute("/api/random");
+
         return joke;
     }
 
@@ -50,7 +48,7 @@ public class FunFactServiceController {
 
 //    // TODO: Getting by category is not implemented yet in the service
     public static String getRandomByCategory() throws URISyntaxException, IOException {
-        logger.info("Send request to the Service, we would like to Get a random joke by category");
+        logger.info("Send request to the Service ( /api/getbycategory?category=), we would like to Get a random joke by category");
         ArrayList categories = getCategories();
         if ( !categories.contains(FunFactCategoryValue)) {
             throw new IllegalArgumentException();
