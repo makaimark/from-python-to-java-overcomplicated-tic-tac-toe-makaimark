@@ -19,6 +19,7 @@ public class TicTacToeAPIController {
     }
 
     public String step(Request request, Response response) throws IOException, URISyntaxException {
-        return service.step(request.queryParams("game"));
+        System.out.println("place = " + request.queryParams("place"));
+        return service.step(request.queryParams("place"));
     }
 }
