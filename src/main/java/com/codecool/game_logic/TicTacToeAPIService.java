@@ -1,9 +1,9 @@
-package com.codecool.game_logic.service;
+package com.codecool.game_logic;
 
-import com.codecool.fun_fact_generator_service.service.APIService;
 import com.codecool.overcomplicated_tic_tac_toe.model.Game;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.net.URI;
@@ -16,7 +16,7 @@ import java.util.List;
 public class TicTacToeAPIService {
 
     private static TicTacToeAPIService INSTANCE;
-    private static final String API_URL = "tttapi.herokuapp.com/api/v1/";
+    private static final String API_URL = "http://tttapi.herokuapp.com/api/v1/";
 
     public static TicTacToeAPIService getInstance() {
         if (INSTANCE == null) {
@@ -25,21 +25,27 @@ public class TicTacToeAPIService {
         return INSTANCE;
     }
 
-    public String step(String place) throws URISyntaxException, IOException {
+    public static String step(String place) throws URISyntaxException, IOException {
         Game game = Game.getInstance();
         List<String> state = game.getGameState();
+        System.out.println(game.getGameState());
         state.set(Integer.parseInt(place), "X");
-        game.setGameState(state);
         String str = String.join(",", state);
         str = str.replace(",", "");
         URIBuilder builder = new URIBuilder(API_URL + str + "/X");
-        System.out.println("Builder" + builder);
-        String response =  execute(builder.build());
-        System.out.println("Response = " + response);
-        return response;
+        String response = execute(builder.build());
+        JSONObject json = new JSONObject(response);
+        String gameState = json.getString("game");
+        System.out.println("gameState =" + gameState);
+        Integer gameRecomm = json.getInt("recommendation");
+        System.out.println("gameRecomm =" + gameRecomm);
+        state.set(Integer.parseInt(String.valueOf(gameRecomm)), "O");
+        game.setGameState(state);
+        System.out.println(game.getGameState());
+        return "";
     }
 
-    private String execute(URI uri) throws IOException {
+    private static String execute(URI uri) throws IOException {
         return Request.Get(uri)
                 .execute()
                 .returnContent()
