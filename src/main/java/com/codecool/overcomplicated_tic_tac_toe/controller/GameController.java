@@ -1,12 +1,12 @@
 package com.codecool.overcomplicated_tic_tac_toe.controller;
 
+import com.codecool.overcomplicated_tic_tac_toe.model.Game;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +26,8 @@ public class GameController {
         params.put("comic_url", comicurl);
         params.put("joke", bycategory);
         params.put("avatar_url", AvatarGeneratorServiceController.getAvatar());
+        params.put("gamestate", Game.getInstance().getState());
+        params.put("state", Game.getInstance().getGameResult());
         return new ModelAndView(params, "game");
     }
 }

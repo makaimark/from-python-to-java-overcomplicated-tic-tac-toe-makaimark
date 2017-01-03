@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -27,21 +28,18 @@ public class TicTacToeAPIService {
 
     public static String step(String place) throws URISyntaxException, IOException {
         Game game = Game.getInstance();
-        List<String> state = game.getGameState();
-        System.out.println(game.getGameState());
-        state.set(Integer.parseInt(place), "X");
+        game.setUserStep(Integer.parseInt(place));
+        List<String> state = game.getState();
+        if (game.checkStatus()) {
+            return "";
+        }
         String str = String.join(",", state);
         str = str.replace(",", "");
         URIBuilder builder = new URIBuilder(API_URL + str + "/X");
         String response = execute(builder.build());
         JSONObject json = new JSONObject(response);
-        String gameState = json.getString("game");
-        System.out.println("gameState =" + gameState);
         Integer gameRecomm = json.getInt("recommendation");
-        System.out.println("gameRecomm =" + gameRecomm);
-        state.set(Integer.parseInt(String.valueOf(gameRecomm)), "O");
-        game.setGameState(state);
-        System.out.println(game.getGameState());
+        game.setComputerStep(gameRecomm);
         return "";
     }
 

@@ -1,8 +1,7 @@
 package com.codecool.overcomplicated_tic_tac_toe;
 
-import com.codecool.game_logic.controller.TicTacToeAPIController;
-import com.codecool.game_logic.service.TicTacToeAPIService;
 import com.codecool.overcomplicated_tic_tac_toe.controller.GameController;
+import com.codecool.overcomplicated_tic_tac_toe.model.Game;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.thymeleaf.resourceresolver.ClassLoaderResourceResolver;
@@ -15,7 +14,6 @@ import static spark.Spark.*;
 public class Server {
     private static final Logger logger = LoggerFactory.getLogger(Server.class);
     private static final int PORT = 9000;
-    private TicTacToeAPIController controller;
 
     public static void main(String[] args) {
         logger.debug("Starting server...");
@@ -45,16 +43,14 @@ public class Server {
         templateResolver.setCacheTTLMs(3600000L);
         templateResolver.setResourceResolver(new ClassLoaderResourceResolver());
 
-        Server application = new Server();
-        application.controller = new TicTacToeAPIController(TicTacToeAPIService.getInstance());
+        Game game = Game.getInstance();
 
         // --- ROUTES ---
         get("/", GameController::renderWelcome, new ThymeleafTemplateEngine(templateResolver));
         get("/game", GameController::renderGame, new ThymeleafTemplateEngine(templateResolver));
-        // TODO: define route for game logic, which will handle user's step
         // TODO: define route for congratulation page
 
-        get("/game-place", application.controller::step);
+        get("/game-place", game::step);
 
         logger.info("Server started on port " + PORT);
     }
