@@ -4,6 +4,7 @@ import com.codecool.overcomplicated_tic_tac_toe.model.Game;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
 import org.json.JSONObject;
+import spark.Response;
 
 import java.io.IOException;
 import java.net.URI;
@@ -26,11 +27,12 @@ public class TicTacToeAPIService {
         return INSTANCE;
     }
 
-    public static String step(String place) throws URISyntaxException, IOException {
+    public static String step(String place, Response res) throws URISyntaxException, IOException {
         Game game = Game.getInstance();
         game.setUserStep(Integer.parseInt(place));
         List<String> state = game.getState();
         if (game.checkStatus()) {
+            res.redirect("/game");
             return "";
         }
         String str = String.join(",", state);

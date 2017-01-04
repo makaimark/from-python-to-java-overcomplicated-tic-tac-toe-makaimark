@@ -35,6 +35,12 @@
                 <span class="media-heading">Profile</span>
                 <img class="media-object" th:src="${avatar_url}" alt="avatar"/>
             </div>
+            <div>
+                <p th:text="${timer}"></p>
+            </div>
+            <div>
+                <p th:text="${timer2}"></p>
+            </div>
         </header>
 
         <p class="lead" th:text="${joke}"></p>
@@ -44,35 +50,35 @@
                 <div class="container-fluid game-container">
                     <div class="row">
                         <div class="col-xs-4">
-                            <a href="/game-place?place=0" class="btn btn-default square">&nbsp;</a>
+                            <a href="/game-place?place=0" class="btn btn-default square" th:text="${gamestate[0]}"></a>
                         </div>
                         <div class="col-xs-4">
-                            <a href="/game-place?place=1" class="btn btn-default square"><i class="fa fa-circle-o" aria-hidden="true"></i></a>
+                            <a href="/game-place?place=1" class="btn btn-default square" th:text="${gamestate[1]}">&nbsp;</a>
                         </div>
                         <div class="col-xs-4">
-                            <a href="/game-place?place=2" class="btn btn-default square"><i class="fa fa-times" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-4">
-                            <a href="/game-place?place=3" class="btn btn-default square">&nbsp;</a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="/game-place?place=4" class="btn btn-default square">&nbsp;</a>
-                        </div>
-                        <div class="col-xs-4">
-                            <a href="/game-place?place=5" class="btn btn-default square">&nbsp;</a>
+                            <a href="/game-place?place=2" class="btn btn-default square" th:text="${gamestate[2]}">&nbsp;</a>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-xs-4">
-                            <a href="/game-place?place=6" class="btn btn-default square">&nbsp;</a>
+                            <a href="/game-place?place=3" class="btn btn-default square" th:text="${gamestate[3]}">&nbsp;</a>
                         </div>
                         <div class="col-xs-4">
-                            <a href="/game-place?place=7" class="btn btn-default square">&nbsp;</a>
+                            <a href="/game-place?place=4" class="btn btn-default square" th:text="${gamestate[4]}">&nbsp;</a>
                         </div>
                         <div class="col-xs-4">
-                            <a href="/game-place?place=8" class="btn btn-default square">&nbsp;</a>
+                            <a href="/game-place?place=5" class="btn btn-default square" th:text="${gamestate[5]}">&nbsp;</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <a href="/game-place?place=6" class="btn btn-default square" th:text="${gamestate[6]}">&nbsp;</a>
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/game-place?place=7" class="btn btn-default square" th:text="${gamestate[7]}">&nbsp;</a>
+                        </div>
+                        <div class="col-xs-4">
+                            <a href="/game-place?place=8" class="btn btn-default square" th:text="${gamestate[8]}">&nbsp;</a>
                         </div>
                     </div>
                 </div>

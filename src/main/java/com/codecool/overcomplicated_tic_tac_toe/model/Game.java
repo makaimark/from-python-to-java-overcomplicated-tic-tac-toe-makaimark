@@ -42,7 +42,7 @@ public class Game implements AIGame {
             return "";
         }
 
-        String result = TicTacToeAPIService.step(request.queryParams("place"));
+        String result = TicTacToeAPIService.step(request.queryParams("place"), response);
         response.redirect("/game");
         return "";
     }
@@ -123,6 +123,7 @@ public class Game implements AIGame {
             setGameResult(GameResult.TIE_GAME);
             return true;
         }
+
         return false;
     }
 }
