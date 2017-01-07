@@ -1,7 +1,6 @@
 package com.codecool.overcomplicated_tic_tac_toe.model;
 
 import com.codecool.game_logic.TicTacToeAPIService;
-import com.codecool.overcomplicated_tic_tac_toe.controller.GameController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;
@@ -37,7 +36,7 @@ public class Game implements AIGame {
 
     public String step(Request request, Response response) throws IOException, URISyntaxException {
         String place = request.queryParams("place");
-        if (this.gameState.get(Integer.parseInt(place)) != "-") {
+        if (!Objects.equals(this.gameState.get(Integer.parseInt(place)), "-")) {
             response.redirect("/game");
             return "";
         }

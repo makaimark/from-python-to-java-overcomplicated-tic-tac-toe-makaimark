@@ -26,16 +26,8 @@ public class AvatarAPIService {
 
     public URI avatar(String characters) throws URISyntaxException, IOException {
         logger.info("Returning the url of the avatar");
-        System.out.println("In api service " + characters);
         URIBuilder builder = new URIBuilder(API_URL + characters +".png");
         System.out.println(builder);
         return builder.build();
-    }
-
-    private String execute(URI uri) throws IOException {
-        return Request.Get(uri)
-                .execute()
-                .returnContent()
-                .asString();
     }
  }

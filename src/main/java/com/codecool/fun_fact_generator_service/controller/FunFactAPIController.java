@@ -16,20 +16,10 @@ public class FunFactAPIController {
 
     private final APIService apiService;
 
-    /**
-     * @param apiService
-     */
     public FunFactAPIController(APIService apiService){
         this.apiService = apiService;
     }
 
-    /**
-     * @param request
-     * @param response
-     * @return
-     * @throws IOException
-     * @throws URISyntaxException
-     */
     public String random(Request request, Response response) throws IOException, URISyntaxException {
         logger.info("Get category name from request");
         String category = request.queryParams(CATEGORY_PARAM_KEY);
@@ -41,13 +31,6 @@ public class FunFactAPIController {
         return apiService.getRandomByCategory(request.queryParams(CATEGORY_PARAM_KEY));
     }
 
-    /**
-     * @param request
-     * @param response
-     * @return
-     * @throws IOException
-     * @throws URISyntaxException
-     */
     public String categories(Request request, Response response) throws IOException, URISyntaxException {
         logger.info("Get the categories");
         return apiService.categories();

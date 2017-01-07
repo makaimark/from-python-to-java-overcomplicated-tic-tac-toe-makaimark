@@ -29,14 +29,6 @@ public class APIService {
         return INSTANCE;
     }
 
-    /**
-     * Gets a random Chuck Norris fact, with category filter, if given
-     *
-     * @param category - if not {@link StringUtils#isEmpty(Object)} acts as a filter.
-     * @return - JSON received from the API as it is.
-     * @throws IOException
-     * @throws URISyntaxException
-     */
     public String random(String category) throws IOException, URISyntaxException {
         URIBuilder builder = new URIBuilder(API_URL + "/random");
 
@@ -61,13 +53,6 @@ public class APIService {
         return json.getString("value");
     }
 
-    /**
-     * Listing fact categories
-     *
-     * @return - JSON from the API
-     * @throws URISyntaxException
-     * @throws IOException
-     */
     public String categories() throws URISyntaxException, IOException {
         logger.info("Listing categories");
 
@@ -76,13 +61,6 @@ public class APIService {
         );
     }
 
-    /**
-     * Executes the actual GET request against the given URI
-     *
-     * @param uri - obj containing path and params.
-     * @return
-     * @throws IOException
-     */
     private String execute(URI uri) throws IOException {
         return Request.Get(uri)
                 .execute()

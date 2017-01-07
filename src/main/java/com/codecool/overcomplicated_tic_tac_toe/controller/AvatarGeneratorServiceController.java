@@ -1,18 +1,13 @@
 package com.codecool.overcomplicated_tic_tac_toe.controller;
 
-import com.codecool.fun_fact_generator_service.service.APIService;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-/**
- * Created by makaimark on 2016.12.07..
- */
 public class AvatarGeneratorServiceController {
 
     private static final Logger logger = LoggerFactory.getLogger(AvatarGeneratorServiceController.class);

@@ -48,7 +48,7 @@ public class Server {
         // --- ROUTES ---
         get("/", GameController::renderWelcome, new ThymeleafTemplateEngine(templateResolver));
         get("/game", GameController::renderGame, new ThymeleafTemplateEngine(templateResolver));
-        // TODO: define route for congratulation page
+        get("/gratulation", GameController::renderAfterGame, new ThymeleafTemplateEngine(templateResolver));
 
         get("/game-place", game::step);
 

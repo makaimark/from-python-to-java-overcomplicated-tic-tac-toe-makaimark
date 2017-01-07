@@ -4,7 +4,6 @@ import org.apache.http.client.utils.URIBuilder;
 import org.apache.http.client.fluent.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.IOException;
 import java.net.URI;
@@ -33,12 +32,11 @@ public class FunFactServiceController {
 
     public static String getRandom() throws URISyntaxException, IOException {
         logger.info("Getting Random Fun Fact, send the request to the service ");
-        String joke = execute("/api/random");
 
-        return joke;
+        return execute("/api/random");
     }
 
-    public static ArrayList<String> getCategories() throws URISyntaxException, IOException {
+    private static ArrayList<String> getCategories() throws URISyntaxException, IOException {
         logger.info("Listing categories, send the request to the service");
         String result = execute("/api/categories");
         result = result.substring(1, result.length()-1);
@@ -46,15 +44,13 @@ public class FunFactServiceController {
         return categories;
     }
 
-//    // TODO: Getting by category is not implemented yet in the service
-    public static String getRandomByCategory() throws URISyntaxException, IOException {
+    static String getRandomByCategory() throws URISyntaxException, IOException {
         logger.info("Send request to the Service ( /api/getbycategory?category=), we would like to Get a random joke by category");
         ArrayList categories = getCategories();
         if ( !categories.contains(FunFactCategoryValue)) {
             throw new IllegalArgumentException();
         }
-        String result = execute("/api/getbycategory?category="+FunFactCategoryValue);
-        return result;
+        return execute("/api/getbycategory?category="+FunFactCategoryValue);
     }
 
     /**

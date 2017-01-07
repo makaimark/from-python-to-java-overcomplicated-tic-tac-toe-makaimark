@@ -9,9 +9,6 @@ import java.net.URISyntaxException;
 
 import static spark.Spark.*;
 
-/**
- * Created by makaimark on 2016.12.04..
- */
 public class GreetingGeneratorService {
 
     private GreetingAPIController controller;

@@ -13,14 +13,14 @@ import java.util.Map;
 public class GameController {
 
     public static ModelAndView renderWelcome(Request req, Response res) throws Exception {
-        Map params = new HashMap<>();
+        Map<Object, Object> params = new HashMap<>();
         params.put("yoda", GreetingServiceController.getMessage());
         params.put("avatar_url", AvatarGeneratorServiceController.getAvatar());
         return new ModelAndView(params, "welcome");
     }
 
     public static ModelAndView renderGame(Request req, Response res) throws IOException, URISyntaxException {
-        Map params = new HashMap<>();
+        Map<Object, Object> params = new HashMap<>();
         String bycategory = FunFactServiceController.getRandomByCategory();
         String comicurl = ComicGeneratorServiceController.getComic();
         params.put("comic_url", comicurl);
@@ -29,5 +29,11 @@ public class GameController {
         params.put("gamestate", Game.getInstance().getState());
         params.put("state", Game.getInstance().getGameResult());
         return new ModelAndView(params, "game");
+    }
+
+    public static ModelAndView renderAfterGame(Request req, Response res) throws IOException, URISyntaxException {
+        Map<Object, Object> params = new HashMap<>();
+        params.put("gratulation", GratulationGeneratorServiceController.getGratulationPicture(Game.getInstance().getGameResult()));
+        return new ModelAndView(params, "after_game");
     }
 }

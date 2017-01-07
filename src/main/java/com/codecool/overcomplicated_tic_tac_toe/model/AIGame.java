@@ -2,9 +2,6 @@ package com.codecool.overcomplicated_tic_tac_toe.model;
 
 import java.util.List;
 
-/**
- * Created by makaimark on 2017.01.03..
- */
 public interface AIGame {
 
     void setInitialState();

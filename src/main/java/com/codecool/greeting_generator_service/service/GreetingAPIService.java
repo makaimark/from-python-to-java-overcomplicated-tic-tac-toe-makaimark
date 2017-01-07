@@ -9,9 +9,6 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-/**
- * Created by makaimark on 2016.12.05..
- */
 public class GreetingAPIService {
 
     private static final Logger logger = LoggerFactory.getLogger(GreetingAPIService.class);

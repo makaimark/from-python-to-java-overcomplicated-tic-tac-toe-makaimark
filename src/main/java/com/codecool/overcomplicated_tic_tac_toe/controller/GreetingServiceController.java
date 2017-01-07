@@ -9,16 +9,13 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-/**
- * Created by makaimark on 2016.12.05..
- */
 public class GreetingServiceController {
 
     private static final Logger logger = LoggerFactory.getLogger(GreetingServiceController.class);
 
     private static final String SERVICE_URL = "http://localhost:60001";
 
-    public static String getMessage() throws IOException, URISyntaxException {
+    static String getMessage() throws IOException, URISyntaxException {
         logger.info("Send the request to the service /greeting");
         return execute("/greeting");
     }

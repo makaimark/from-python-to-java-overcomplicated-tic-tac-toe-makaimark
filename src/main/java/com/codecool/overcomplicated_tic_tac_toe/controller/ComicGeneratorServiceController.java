@@ -1,20 +1,13 @@
 package com.codecool.overcomplicated_tic_tac_toe.controller;
 
-import com.codecool.fun_fact_generator_service.service.APIService;
 import org.apache.http.client.fluent.Request;
 import org.apache.http.client.utils.URIBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-/**
- * Created by makaimark on 2016.12.06..
- */
 public class ComicGeneratorServiceController {
 
     private static final Logger logger = LoggerFactory.getLogger(ComicGeneratorServiceController.class);
